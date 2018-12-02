@@ -1,13 +1,6 @@
 angular.module('HealthApp', [])
     .controller('HealthController', function($scope) {
-        
-        $scope.deleteAll = function(){
-           afterOp=0.0;
-           f_value=0.0;
-           first_entry=true;
-           old_value_op='add';
-           $scope.value = null;
-        }
+        $('.startup').append("<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Welcome to Blood Sugar Level Calculator</div>")
         
         $scope.updateOutput =function(number){
             if(($scope.value == null) || ($scope.value == undefined)){
