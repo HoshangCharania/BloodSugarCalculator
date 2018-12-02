@@ -20,27 +20,29 @@ angular.module('HealthApp', [])
     }
 
     $scope.checkValid = function(){
+        currTime = performance.now();
         number=Number($scope.value);
         $scope.removeWarning();
         if((typeof number=="number") & (number>=0) & (number.toString().length<=20)){
             // do computation
-            $scope.checkPeriod(number);
+            $scope.checkPeriod(number,currTime);
         }else{
             $scope.classification="";
             $('.parent').empty();
             $('.parent').append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Please Enter a Valid Input.</div>")
             $(".parent").fadeTo(2000, 500).slideUp(2000, function(){
                 $(".parent").slideUp(2000);
-                 });   
+                 });
+            $scope.getRuntime(currTime); 
         }
     }
 
-    $scope.checkPeriod= function(number){
+    $scope.checkPeriod= function(number,currTime){
         var diet=$('input[name=optradio]:checked').val();
         if(diet=="not-fasting"){
-            $scope.checkWithoutFast();
+            $scope.checkWithoutFast(number,currTime);
         }else{
-            $scope.checkWithFast();
+            $scope.checkWithFast(number,currTime);
         }
         }
     $scope.checkWithFast =function(){
@@ -55,6 +57,7 @@ angular.module('HealthApp', [])
             $scope.classification= "Blood Sugar Level is DIABETES";
             $scope.warningHigh();
         }
+        $scope.getRuntime(currTime);
     }
     $scope.checkWithoutFast =function(){
         if(number<=69){
@@ -68,6 +71,7 @@ angular.module('HealthApp', [])
             $scope.classification= "Blood Sugar Level is DIABETES";
             $scope.warningHigh();
         }
+        $scope.getRuntime(currTime);
     }
 
     $scope.warningLow = function(){
@@ -80,6 +84,11 @@ angular.module('HealthApp', [])
 
     $scope.removeWarning = function(){
         $('.warning').empty();
+    }
+
+    $scope.getRuntime = function(currTime){
+        time=performance.now();
+        $scope.runtime= ((time-currTime)/1000).toFixed(5)+" seconds"
     }
 
     });
