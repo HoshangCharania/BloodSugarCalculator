@@ -2,6 +2,10 @@ angular.module('HealthApp', [])
     .controller('HealthController', function($scope) {
         $('.startup').append("<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Welcome to Blood Sugar Level Calculator</div>")
         
+        $scope.clear = function(){
+            $scope.value="";
+            $scope.widget.title="";
+        }
         $scope.updateOutput =function(number){
             if(($scope.value == null) || ($scope.value == undefined)){
                 $scope.value="";
@@ -42,30 +46,36 @@ angular.module('HealthApp', [])
     $scope.checkWithFast =function(){
         if(number<=69){
             $scope.classification= $scope.value+"mg/dL is LOW";
-            $scope.warning();
+            $scope.warningLow();
         }else if((number>=70) & (number<=110)){
             $scope.classification= $scope.value+"mg/dL is NORMAL";
         }else if((number>=111) & (number<=125)){
             $scope.classification= $scope.value+"mg/dL is PRE-DIABETES";
         }else if((number>=126)){
             $scope.classification= $scope.value+"mg/dL is DIABETES";
+            $scope.warningHigh();
         }
     }
     $scope.checkWithoutFast =function(){
         if(number<=69){
             $scope.classification= $scope.value+"mg/dL is LOW";
-            $scope.warning();
+            $scope.warningLow();
         }else if((number>=70) & (number<=140)){
             $scope.classification= $scope.value+"mg/dL is NORMAL";
         }else if((number>=141) & (number<=160)){
             $scope.classification= $scope.value+"mg/dL is PRE-DIABETES";
         }else if((number>=161)){
             $scope.classification= $scope.value+"mg/dL is DIABETES";
+            $scope.warningHigh();
         }
     }
 
-    $scope.warning = function(){
-            $('.warning').append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Please call 911</div>")
+    $scope.warningLow = function(){
+            $('.warning').append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Very low blood sugar could be life threatening, if you think this situation is an emergency, please call 911.</div>");
+    }
+
+    $scope.warningHigh = function(){
+        $('.warning').append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Very High blood sugar could be life threatening, if you think this situation is an emergency, please call 911.</div>");
     }
 
     $scope.removeWarning = function(){
