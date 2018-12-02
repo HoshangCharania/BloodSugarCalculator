@@ -38,16 +38,35 @@ angular.module('HealthApp', [])
     }
 
     $scope.checkPeriod= function(number){
+        var diet=$('input[name=optradio]:checked').val();
+        if(diet=="not-fasting"){
+            $scope.checkWithoutFast();
+        }else{
+            $scope.checkWithFast();
+        }
+        }
+    $scope.checkWithFast =function(){
         if(number<=69){
             $scope.classification= $scope.value+"mg/dL is LOW";
         }else if((number>=70) & (number<=110)){
             $scope.classification= $scope.value+"mg/dL is NORMAL";
         }else if((number>=111) & (number<=125)){
             $scope.classification= $scope.value+"mg/dL is PRE-DIABETES";
-        }else if((number>=125)){
+        }else if((number>=126)){
             $scope.classification= $scope.value+"mg/dL is DIABETES";
         }
+    }
+    $scope.checkWithoutFast =function(){
+        if(number<=69){
+            $scope.classification= $scope.value+"mg/dL is LOW";
+        }else if((number>=70) & (number<=140)){
+            $scope.classification= $scope.value+"mg/dL is NORMAL";
+        }else if((number>=141) & (number<=160)){
+            $scope.classification= $scope.value+"mg/dL is PRE-DIABETES";
+        }else if((number>=161)){
+            $scope.classification= $scope.value+"mg/dL is DIABETES";
         }
+    }
 
     });
 
