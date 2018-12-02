@@ -15,6 +15,9 @@
                     <h2>Diabetes Health Checker: <small>Please enter your current sugar level</small></h2>
             </div>
             <div class="row">
+                    <div class="col-sm-6"><h4>Please choose your current diet status:</h4></div>
+            </div>
+            <div class="row">
                                 <div class="col-sm-2">
                                         <input type="radio" name="optradio" value="fasting">Fasting
                                 </div>
@@ -22,10 +25,12 @@
                                         <input type="radio" type="radio" name="optradio" value="not-fasting">2 hours after Meal
                                 </div>
             </div>
-            
+            <div class="row mt-4">
+                        <div class="col-sm-6"><h4>Please enter your current blood sugar level(in mg/dL):</h4></div>
+            </div>
     <div class="row mt-1"> 
     <div class="col-sm-6">
-    <div class="row mt-1">
+    <div class="row mt-4">
     <div class="col-sm-6">
             <input class="form-control" type="text" ng-change="updateOutput()" name="widget.title" ng-model="widget.title" placeholder="Type Something...">
     </div>
