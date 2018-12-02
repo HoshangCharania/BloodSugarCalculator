@@ -24,6 +24,7 @@ angular.module('HealthApp', [])
 
     $scope.checkValid = function(){
         number=Number($scope.value);
+        $scope.removeWarning();
         if((typeof number=="number") & (number>=0) & (number.toString().length<=20)){
             // do computation
             $scope.checkPeriod(number);
@@ -48,6 +49,7 @@ angular.module('HealthApp', [])
     $scope.checkWithFast =function(){
         if(number<=69){
             $scope.classification= $scope.value+"mg/dL is LOW";
+            $scope.warning();
         }else if((number>=70) & (number<=110)){
             $scope.classification= $scope.value+"mg/dL is NORMAL";
         }else if((number>=111) & (number<=125)){
@@ -59,6 +61,7 @@ angular.module('HealthApp', [])
     $scope.checkWithoutFast =function(){
         if(number<=69){
             $scope.classification= $scope.value+"mg/dL is LOW";
+            $scope.warning();
         }else if((number>=70) & (number<=140)){
             $scope.classification= $scope.value+"mg/dL is NORMAL";
         }else if((number>=141) & (number<=160)){
@@ -66,6 +69,14 @@ angular.module('HealthApp', [])
         }else if((number>=161)){
             $scope.classification= $scope.value+"mg/dL is DIABETES";
         }
+    }
+
+    $scope.warning = function(){
+            $('.warning').append("<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Please call 911</div>")
+    }
+
+    $scope.removeWarning = function(){
+        $('.warning').empty();
     }
 
     });
