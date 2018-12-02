@@ -45,27 +45,27 @@ angular.module('HealthApp', [])
         }
     $scope.checkWithFast =function(){
         if(number<=69){
-            $scope.classification= $scope.value+"mg/dL is LOW";
+            $scope.classification= "Blood Sugar Level is LOW";
             $scope.warningLow();
         }else if((number>=70) & (number<=110)){
-            $scope.classification= $scope.value+"mg/dL is NORMAL";
+            $scope.classification= "Blood Sugar Level is NORMAL";
         }else if((number>=111) & (number<=125)){
-            $scope.classification= $scope.value+"mg/dL is PRE-DIABETES";
+            $scope.classification="Blood Sugar Level is PRE-DIABETES";
         }else if((number>=126)){
-            $scope.classification= $scope.value+"mg/dL is DIABETES";
+            $scope.classification= "Blood Sugar Level is DIABETES";
             $scope.warningHigh();
         }
     }
     $scope.checkWithoutFast =function(){
         if(number<=69){
-            $scope.classification= $scope.value+"mg/dL is LOW";
+            $scope.classification= "Blood Sugar Level is LOW";
             $scope.warningLow();
         }else if((number>=70) & (number<=140)){
-            $scope.classification= $scope.value+"mg/dL is NORMAL";
+            $scope.classification= "Blood Sugar Level is NORMAL";
         }else if((number>=141) & (number<=160)){
-            $scope.classification= $scope.value+"mg/dL is PRE-DIABETES";
+            $scope.classification= "Blood Sugar Level is PRE-DIABETES";
         }else if((number>=161)){
-            $scope.classification= $scope.value+"mg/dL is DIABETES";
+            $scope.classification= "Blood Sugar Level is DIABETES";
             $scope.warningHigh();
         }
     }
